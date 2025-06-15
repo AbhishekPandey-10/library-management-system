@@ -7,8 +7,6 @@ except sql.Error as e:
     exit()
 cursor = connect.cursor()
 choice = 1
-cursor.execute("select * from books where BOOKID='B999'")
-print(cursor.fetchmany(3))
 
 def addbook():
     st = "insert into BOOKS values('{}','{}','{}','{}','{}')".format(
@@ -16,11 +14,7 @@ def addbook():
         input("Enter BOOK name"),
         input("Enter AUTHOR name"),
         input("Enter GENRE"),
-        try:
-    user_input = int(input("Enter QUANTITY"))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
+        int(input("Enter QUANTITY"))
     )                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
     cursor.execute(st)
     connect.commit()
@@ -46,11 +40,7 @@ def searchBOOK():
 2 - search by author
 3 - search by genre
 4 - show all books''')
-    choice2 = try:
-    user_input = int(input("ENTER YOUR CHOICE: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
+    choice2 = int(input("ENTER YOUR CHOICE: "))
     if choice2 == 1:
         B_name = input('enter book name: ')
         st4 = "select * from BOOKS where BOOKNAME='{}'".format(B_name)
@@ -72,24 +62,12 @@ except ValueError:
 def modifyQTY():
     B_id2 = input("Enter book id you wish to modify QUANTITY: ")
     print("1: If Books are added\n2: If Books are removed")
-    choice3 = try:
-    user_input = int(input("ENTER YOUR CHOICE: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
+    choice3 = int(input("ENTER YOUR CHOICE: "))
     if choice3 == 1:
-        Bnum = try:
-    user_input = int(input("Enter no. of book added: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
+        Bnum = int(input("Enter no. of book added: "))
         st5 = "update BOOKS set QTY=QTY+{} where BOOKID='{}'".format(Bnum, B_id2)
     elif choice3 == 2:
-        Bnum = try:
-    user_input = int(input("Enter no. of book removed: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
+        Bnum = int(input("Enter no. of book removed: "))
         st5 = "update BOOKS set QTY=QTY-{} where BOOKID='{}'".format(Bnum, B_id2)
     cursor.execute(st5)
     connect.commit()
@@ -124,9 +102,9 @@ def Return():
     str10 = "SELECT DATEDIFF(dor, doi) FROM RENTALS WHERE BOOKID='{}' AND C_ID='{}'".format(B_id4, cID2)
     cursor.execute(str10)
     days = cursor.fetchone()
-if days is None:
-    print('No data found.')
-    return
+    if days is None:
+        print('No data found.')
+        return
     fine = 0
     if days[0] <= 15:
         price = days[0] * 5
@@ -139,9 +117,9 @@ if days is None:
     print("\tBOOK RETURNED SUCCESSFULLY\nBILL")
     cursor.execute("SELECT C_ID, C_NAME, C_PNO, BOOKID, DOI, DOR, PRICE FROM RENTALS NATURAL JOIN C_DETAILS WHERE BOOKID='{}' AND C_ID='{}'".format(B_id4, cID2))
     bill = cursor.fetchone()
-if bill is None:
-    print('No data found.')
-    return
+    if bill is None:
+        print('No data found.')
+        return
     List = ["CustomerID", "Customer NAME", "Phone NO.", "Book ID", "Date of Issue", "Date of returning", "Total Amount"]
     for i in range(7):
         print(List[i], "::-", bill[i])
@@ -149,33 +127,37 @@ if bill is None:
 
 
 def signUP():
-
     cursor.execute("SELECT MAX(C_ID) FROM C_DETAILS")
-    last_cid = cursor.fetchone()
-if last_cid is None:
-    print('No data found.')
-    return[0]
-
+    last_cid = cursor.fetchone()[0]
     cid = last_cid + 1 if last_cid else 1
 
     name = input("Enter Your Name: ")
-    pno = input("Enter Your PHONE NO: ")
-    ad = input("Enter Your ADDRESS: ")
-    pssd = try:
-    user_input = int(input("CREATE A FOUR-DIGIT PASSWORD: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
-    cursor.execute("INSERT INTO C_DETAILS VALUES({}, '{}', {}, '{}', '{}')".format(cid, name, pno, pssd, ad))
-    connect.commit()
     
-    print("\tYOUR DETAILS")
-    print("Name: {}".format(name))
-    print("PHONE no: {}".format(pno))
-    print("Address: {}".format(ad))
-    print("Customer ID: {}".format(cid))
-    print("Password: {}".format(pssd))
+    pno = input("Enter Your PHONE NO: ")
+    if not pno.isdigit() or len(pno) != 10:
+        print("Invalid phone number. It must be 10 digits.")
+        return
 
+    ad = input("Enter Your ADDRESS: ")
+
+    try:
+        pssd = int(input("CREATE A FOUR-DIGIT PASSWORD: "))
+        if pssd < 1000 or pssd > 9999:
+            print("Password must be exactly 4 digits.")
+            return
+    except ValueError:
+        print("Invalid password input.")
+        return
+
+    cursor.execute("INSERT INTO C_DETAILS VALUES(%s, %s, %s, %s, %s)", (cid, name, pno, pssd, ad))
+    connect.commit()
+
+    print("\tYOUR DETAILS")
+    print("Name:", name)
+    print("PHONE no:", pno)
+    print("Address:", ad)
+    print("Customer ID:", cid)
+    print("Password:", pssd)
 
 
 def showRentedBooks():
@@ -195,18 +177,10 @@ while choice == 1:
     print("2. Login as USER")
     print("3. Sign up as NEW USER")
 
-    choice1 = try:
-    user_input = int(input("Enter your choice: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
+    choice1 = int(input("Enter your choice: "))
 
     if choice1 == 1:
-        if try:
-    user_input = int(input("Enter the password: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return == 2049:
+        if int(input("Enter the password: ")) == 2049:
             print("1. ADD book")
             print("2. DELETE book")
             print("3. MODIFY Quantity")
@@ -215,11 +189,7 @@ except ValueError:
             print("6. See currently rented books")
             print("7. See RETURNED books")
 
-            achoice = try:
-    user_input = int(input("ENTER your choice: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
+            achoice = int(input("ENTER your choice: "))
 
             if achoice == 1:
                 addbook()
@@ -240,18 +210,12 @@ except ValueError:
             print("Wrong password")
 
     elif choice1 == 2:
-        i = try:
-    user_input = int(input("Enter your customer id: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
+        i = int(input("Enter your customer id: "))
         cursor.execute("select C_PASS from C_DETAILS where C_ID={}".format(i))
         j = cursor.fetchone()
-if j is None:
-    print('No data found.')
-    return
-        print(type(j))
-        print(j)
+        if j is None:
+            print('No data found.')
+            continue
         if input("Enter Password: ") == j[0]:
             searchBOOK()
         else:
@@ -260,9 +224,5 @@ if j is None:
     elif choice1 == 3:
         signUP()
 
-    choice = try:
-    user_input = int(input("ENTER 1 TO RUN PROGRAM AGAIN: "))
-except ValueError:
-    print('Invalid input! Please enter a number.')
-    return
+    choice = int(input("ENTER 1 TO RUN PROGRAM AGAIN: "))
 connect.close()
