@@ -45,6 +45,8 @@ Learned a lot along the way.
  5.Introduced viewUserRentalHistory() — users can view all their rentals, return status, and charges
  6.Remembered logged-in user (c_id) to avoid repeated prompts
  7.Pushed clean version to GitHub main branch (renamed from master)
+
+
 ⏭️ Next Steps
 - Begin building GUI version using Tkinter (`lms_gui.py`)
 - Convert each CLI function to GUI form (starting with login + signup)
