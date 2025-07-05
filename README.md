@@ -39,11 +39,17 @@ Learned a lot along the way.
 
 ## 🔄 Project Update — July 5, 2025
  1.Refactored all SQL queries to use %s placeholders (SQL injection safe)
+ 
  2.Wrapped all DB operations in try-except blocks
+ 
  3.Improved usability in CLI menu (admin/user menu loop, cleaner flow)
+ 
  4.Added rental checks in issue() and return() functions
+ 
  5.Introduced viewUserRentalHistory() — users can view all their rentals, return status, and charges
+ 
  6.Remembered logged-in user (c_id) to avoid repeated prompts
+ 
  7.Pushed clean version to GitHub main branch (renamed from master)
 
 
