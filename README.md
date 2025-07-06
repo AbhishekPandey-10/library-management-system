@@ -35,24 +35,26 @@ Learned a lot along the way.
 3. Run the Python file:
    ```bash
    python library_system.py
- SQL PART UPLOADED 
+SQL PART UPLOADED
+ 
+ ---
 
 ## 🔄 Project Update — July 5, 2025
- 1.Refactored all SQL queries to use %s placeholders (SQL injection safe)
+ 1. Refactored all SQL queries to use `%s` placeholders (SQL injection safe)
  
- 2.Wrapped all DB operations in try-except blocks
+ 2. Wrapped all DB operations in try-except blocks.
  
- 3.Improved usability in CLI menu (admin/user menu loop, cleaner flow)
+ 3. Improved usability in CLI menu (admin/user menu loop, cleaner flow)
  
- 4.Added rental checks in issue() and return() functions
+ 4. Added rental checks in `issue()` and `return()` functions
  
- 5.Introduced viewUserRentalHistory() — users can view all their rentals, return status, and charges
+ 5. Introduced `viewUserRentalHistory()` — users can view all their rentals, return status, and charges
  
- 6.Remembered logged-in user (c_id) to avoid repeated prompts
+ 6. Remembered logged-in user (`c_id`) to avoid repeated prompts
  
- 7.Pushed clean version to GitHub main branch (renamed from master)
+ 7. Pushed clean version to GitHub main branch (renamed from master)
 
 
-⏭️ Next Steps
+⏭️ **Next Steps**
 - Begin building GUI version using Tkinter (`lms_gui.py`)
 - Convert each CLI function to GUI form (starting with login + signup)
