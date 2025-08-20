@@ -52,7 +52,3 @@ Learned a lot along the way.
  
  7.Pushed clean version to GitHub main branch (renamed from master)
 
-
-⏭️ Next Steps
-- Begin building GUI version using Tkinter (`lms_gui.py`)
-- Convert each CLI function to GUI form (starting with login + signup)
