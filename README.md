@@ -1,108 +1,97 @@
-📚 Library Management System (Python + MySQL)
+# 📚 Library Management System (Python + MySQL)
 
-This repo contains two implementations of a Library Management System:
+This repo contains **two implementations** of a Library Management System:
 
-CLI Version (first project I built — command-line interface).
+1. **CLI Version** (first project I built — command-line interface).
+2. **GUI Version** (Tkinter-based desktop application).
 
-GUI Version (Tkinter-based desktop application).
+Both versions use **Python + MySQL** as the backend.
 
-Both versions use Python + MySQL as the backend.
+---
 
-🔧 Features
-✅ CLI Version
+## 🔧 Features
 
-Admin and User login system
+### ✅ CLI Version
 
-Add / Delete / Search books
+* Admin and User login system
+* Add / Delete / Search books
+* Issue & Return books with fine calculation
+* New user signup (phone no. + 4-digit password)
+* Input validation (phone no., password length, etc.)
+* Tabulated output using `tabulate`
+* Parameterized queries (`%s` placeholders → SQL injection safe)
 
-Issue & Return books with fine calculation
+### 🎨 GUI Version (Tkinter)
 
-New user signup (phone no. + 4-digit password)
+* Admin and User menus with login/signup
+* Add, Delete, Modify, and Search books from a GUI interface
+* Issue & Return books with rental tracking
+* User rental history view
+* Treeview tables for displaying books and rentals
+* Message boxes for feedback/errors
+* Cleaner, more user-friendly experience compared to CLI
 
-Input validation (phone no., password length, etc.)
+---
 
-Tabulated output using tabulate
+## 🛠️ Tech Stack
 
-Parameterized queries (%s placeholders → SQL injection safe)
+* **Python**
+* **MySQL**
+* Libraries:
 
-🎨 GUI Version (Tkinter)
+  * `mysql.connector`
+  * `tabulate` (CLI)
+  * `tkinter` (GUI)
 
-Admin and User menus with login/signup
+---
 
-Add, Delete, Modify, and Search books from a GUI interface
+## 📦 How to Run
 
-Issue & Return books with rental tracking
+### Setup Database
 
-User rental history view
+1. Install MySQL and create a database called `Library`.
+2. Run the provided `setup_library_db.py` (GUI) or use the `.sql` file (CLI) to create required tables.
 
-Treeview tables for displaying books and rentals
+### Run CLI Version
 
-Message boxes for feedback/errors
-
-Cleaner, more user-friendly experience compared to CLI
-
-🛠️ Tech Stack
-
-Python
-
-MySQL
-
-Libraries:
-
-mysql.connector
-
-tabulate (CLI)
-
-tkinter (GUI)
-
-📦 How to Run
-Setup Database
-
-Install MySQL and create a database called Library.
-
-Run the provided setup_library_db.py (GUI) or use the .sql file (CLI) to create required tables.
-
-Run CLI Version
+```bash
 cd cli-version
 python library_cli.py
+```
 
-Run GUI Version
+### Run GUI Version
+
+```bash
 cd gui-version
 python library_system.py
+```
 
-📅 Project Updates
-🔄 CLI Updates — July 5, 2025
+---
 
-Refactored all SQL queries → parameterized (%s)
+## 📅 Project Updates
 
-Wrapped DB operations in try-except blocks
+### 🔄 CLI Updates — July 5, 2025
 
-Improved CLI menus (admin/user loop flow)
+1. Refactored all SQL queries → parameterized (`%s`)
+2. Wrapped DB operations in try-except blocks
+3. Improved CLI menus (admin/user loop flow)
+4. Added rental checks in issue() and return()
+5. Added `viewUserRentalHistory()`
+6. Remembered logged-in user (`c_id`)
+7. Pushed clean version to GitHub main branch
 
-Added rental checks in issue() and return()
+### 🎨 GUI Project — September 2025
 
-Added viewUserRentalHistory()
+1. Built full Tkinter interface for Admin/User
+2. Added CRUD operations for books with GUI forms
+3. Integrated Treeview for displaying books and rentals
+4. Implemented rental history, issue/return, and user management
+5. Structured code for maintainability (GUI + DB separation planned)
 
-Remembered logged-in user (c_id)
+---
 
-Pushed clean version to GitHub main branch
+## 📌 Note
 
-🎨 GUI Project — September 2025
-
-Built full Tkinter interface for Admin/User
-
-Added CRUD operations for books with GUI forms
-
-Integrated Treeview for displaying books and rentals
-
-Implemented rental history, issue/return, and user management
-
-Structured code for maintainability (GUI + DB separation planned)
-
-📌 Note
-
-The CLI project was my first proper Python + MySQL system — learned a lot while building it.
-
-The GUI project is the improved, user-friendly version.
-
-Both are in this repo → look inside cli-version/ and gui-version/.
+* The **CLI project** was my first proper Python + MySQL system — learned a lot while building it.
+* The **GUI project** is the improved, user-friendly version.
+* Both are in this repo → look inside `cli-version/` and `gui-version/`.
