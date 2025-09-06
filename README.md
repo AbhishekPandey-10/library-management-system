@@ -1,54 +1,108 @@
-# 📚 Library Management System (Python + MySQL CLI Project)
+📚 Library Management System (Python + MySQL)
 
-This was the first proper project I built using Python and MySQL.  
-It’s a command-line based system where you can manage books, users, issue/return, fines, and all that library-type stuff.
+This repo contains two implementations of a Library Management System:
 
-Not gonna lie — started this with almost no idea how to handle MySQL or structure a full system, but figured it out as I built it.  
-Learned a lot along the way.
+CLI Version (first project I built — command-line interface).
 
----
+GUI Version (Tkinter-based desktop application).
 
-## 🔧 Features
+Both versions use Python + MySQL as the backend.
 
-- Admin and user login
-- Add/Delete/Search books
-- Issue & return books with fine calculation
-- New user signup with phone no. and 4-digit password
-- Error handling and input validation (phone no, password length etc.)
-- Tabulated output using `tabulate` (for clean CLI display)
-- Used **parameterized queries** to prevent SQL injection everywhere.
+🔧 Features
+✅ CLI Version
 
----
+Admin and User login system
 
-## 🛠️ Tech Used
+Add / Delete / Search books
 
-- Python
-- MySQL
-- `mysql.connector` + `tabulate`
+Issue & Return books with fine calculation
 
----
+New user signup (phone no. + 4-digit password)
 
-## 📦 How to Run
+Input validation (phone no., password length, etc.)
 
-1. Make sure MySQL is installed
-2. Create a DB called `Library` and set up tables manually (I'll upload `.sql` soon)
-3. Run the Python file:
-   ```bash
-   python library_system.py
- SQL PART UPLOADED 
+Tabulated output using tabulate
 
-## 🔄 Project Update — July 5, 2025
- 1.Refactored all SQL queries to use %s placeholders (SQL injection safe)
- 
- 2.Wrapped all DB operations in try-except blocks
- 
- 3.Improved usability in CLI menu (admin/user menu loop, cleaner flow)
- 
- 4.Added rental checks in issue() and return() functions
- 
- 5.Introduced viewUserRentalHistory() — users can view all their rentals, return status, and charges
- 
- 6.Remembered logged-in user (c_id) to avoid repeated prompts
- 
- 7.Pushed clean version to GitHub main branch (renamed from master)
+Parameterized queries (%s placeholders → SQL injection safe)
 
+🎨 GUI Version (Tkinter)
+
+Admin and User menus with login/signup
+
+Add, Delete, Modify, and Search books from a GUI interface
+
+Issue & Return books with rental tracking
+
+User rental history view
+
+Treeview tables for displaying books and rentals
+
+Message boxes for feedback/errors
+
+Cleaner, more user-friendly experience compared to CLI
+
+🛠️ Tech Stack
+
+Python
+
+MySQL
+
+Libraries:
+
+mysql.connector
+
+tabulate (CLI)
+
+tkinter (GUI)
+
+📦 How to Run
+Setup Database
+
+Install MySQL and create a database called Library.
+
+Run the provided setup_library_db.py (GUI) or use the .sql file (CLI) to create required tables.
+
+Run CLI Version
+cd cli-version
+python library_cli.py
+
+Run GUI Version
+cd gui-version
+python library_system.py
+
+📅 Project Updates
+🔄 CLI Updates — July 5, 2025
+
+Refactored all SQL queries → parameterized (%s)
+
+Wrapped DB operations in try-except blocks
+
+Improved CLI menus (admin/user loop flow)
+
+Added rental checks in issue() and return()
+
+Added viewUserRentalHistory()
+
+Remembered logged-in user (c_id)
+
+Pushed clean version to GitHub main branch
+
+🎨 GUI Project — September 2025
+
+Built full Tkinter interface for Admin/User
+
+Added CRUD operations for books with GUI forms
+
+Integrated Treeview for displaying books and rentals
+
+Implemented rental history, issue/return, and user management
+
+Structured code for maintainability (GUI + DB separation planned)
+
+📌 Note
+
+The CLI project was my first proper Python + MySQL system — learned a lot while building it.
+
+The GUI project is the improved, user-friendly version.
+
+Both are in this repo → look inside cli-version/ and gui-version/.
