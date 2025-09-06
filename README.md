@@ -1,54 +1,97 @@
-# 📚 Library Management System (Python + MySQL CLI Project)
+# 📚 Library Management System (Python + MySQL)
 
-This was the first proper project I built using Python and MySQL.  
-It’s a command-line based system where you can manage books, users, issue/return, fines, and all that library-type stuff.
+This repo contains **two implementations** of a Library Management System:
 
-Not gonna lie — started this with almost no idea how to handle MySQL or structure a full system, but figured it out as I built it.  
-Learned a lot along the way.
+1. **CLI Version** (first project I built — command-line interface).
+2. **GUI Version** (Tkinter-based desktop application).
+
+Both versions use **Python + MySQL** as the backend.
 
 ---
 
 ## 🔧 Features
 
-- Admin and user login
-- Add/Delete/Search books
-- Issue & return books with fine calculation
-- New user signup with phone no. and 4-digit password
-- Error handling and input validation (phone no, password length etc.)
-- Tabulated output using `tabulate` (for clean CLI display)
-- Used **parameterized queries** to prevent SQL injection everywhere.
+### ✅ CLI Version
+
+* Admin and User login system
+* Add / Delete / Search books
+* Issue & Return books with fine calculation
+* New user signup (phone no. + 4-digit password)
+* Input validation (phone no., password length, etc.)
+* Tabulated output using `tabulate`
+* Parameterized queries (`%s` placeholders → SQL injection safe)
+
+### 🎨 GUI Version (Tkinter)
+
+* Admin and User menus with login/signup
+* Add, Delete, Modify, and Search books from a GUI interface
+* Issue & Return books with rental tracking
+* User rental history view
+* Treeview tables for displaying books and rentals
+* Message boxes for feedback/errors
+* Cleaner, more user-friendly experience compared to CLI
 
 ---
 
-## 🛠️ Tech Used
+## 🛠️ Tech Stack
 
-- Python
-- MySQL
-- `mysql.connector` + `tabulate`
+* **Python**
+* **MySQL**
+* Libraries:
+
+  * `mysql.connector`
+  * `tabulate` (CLI)
+  * `tkinter` (GUI)
 
 ---
 
 ## 📦 How to Run
 
-1. Make sure MySQL is installed
-2. Create a DB called `Library` and set up tables manually (I'll upload `.sql` soon)
-3. Run the Python file:
-   ```bash
-   python library_system.py
- SQL PART UPLOADED 
+### Setup Database
 
-## 🔄 Project Update — July 5, 2025
- 1.Refactored all SQL queries to use %s placeholders (SQL injection safe)
- 
- 2.Wrapped all DB operations in try-except blocks
- 
- 3.Improved usability in CLI menu (admin/user menu loop, cleaner flow)
- 
- 4.Added rental checks in issue() and return() functions
- 
- 5.Introduced viewUserRentalHistory() — users can view all their rentals, return status, and charges
- 
- 6.Remembered logged-in user (c_id) to avoid repeated prompts
- 
- 7.Pushed clean version to GitHub main branch (renamed from master)
+1. Install MySQL and create a database called `Library`.
+2. Run the provided `setup_library_db.py` (GUI) or use the `.sql` file (CLI) to create required tables.
 
+### Run CLI Version
+
+```bash
+cd cli-version
+python library_cli.py
+```
+
+### Run GUI Version
+
+```bash
+cd gui-version
+python library_system.py
+```
+
+---
+
+## 📅 Project Updates
+
+### 🔄 CLI Updates — July 5, 2025
+
+1. Refactored all SQL queries → parameterized (`%s`)
+2. Wrapped DB operations in try-except blocks
+3. Improved CLI menus (admin/user loop flow)
+4. Added rental checks in issue() and return()
+5. Added `viewUserRentalHistory()`
+6. Remembered logged-in user (`c_id`)
+7. Pushed clean version to GitHub main branch
+
+### 🎨 GUI Project — September 2025
+
+1. Built full Tkinter interface for Admin/User
+2. Added CRUD operations for books with GUI forms
+3. Integrated Treeview for displaying books and rentals
+4. Implemented rental history, issue/return, and user management
+5. Structured code for maintainability (GUI + DB separation planned)
+
+---
+
+## 📌 Note
+
+* The **CLI project** was my first proper Python + MySQL system — learned a lot while building it.
+* The **GUI project** is the improved, user-friendly version.
+* Both are in this repo → look inside `cli-version/` and `gui-version/`.
