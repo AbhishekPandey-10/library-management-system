@@ -12,7 +12,7 @@ class LibraryGUI:
         
         # Database connection
         try:
-            self.connect = sql.connect(host="localhost", user="root", passwd='Root@911820#', database="my_new_library")
+            self.connect = sql.connect(host="localhost", user="root", passwd='Your Password', database="my_new_library")
             self.cursor = self.connect.cursor()
         except sql.Error as e:
             messagebox.showerror("Database Error", f"Database connection failed: {e}")
