@@ -4,7 +4,7 @@ import mysql.connector as sql
 from tabulate import tabulate
 
 class LibraryGUI:
-    def __init__(self):
+    def __init__(self,show_main_menu=True):
         self.root = tk.Tk()
         self.root.title("Library Management System")
         self.root.geometry("800x600")
@@ -21,14 +21,12 @@ class LibraryGUI:
         
         self.current_frame = None
         self.create_main_menu()
-    
+    #
     def clear_frame(self):
-        """Clear current frame"""
         if self.current_frame:
             self.current_frame.destroy()
     
     def create_main_menu(self):
-        """Create main menu"""
         self.clear_frame()
         self.current_frame = tk.Frame(self.root, bg='#f0f0f0')
         self.current_frame.pack(fill='both', expand=True)
@@ -67,16 +65,13 @@ class LibraryGUI:
         btn_exit.pack(pady=10)
     
     def admin_login(self):
-        """Admin login window"""
         password = simpledialog.askstring("Admin Login", "Enter the password:", show='*')
-
         if password and password == "2049":
             self.admin_menu()
         elif password:
             messagebox.showerror("Error", "Wrong password")
     
     def admin_menu(self):
-        """Admin menu window"""
         self.clear_frame()
         self.current_frame = tk.Frame(self.root, bg='#f0f0f0')
         self.current_frame.pack(fill='both', expand=True)
@@ -106,7 +101,6 @@ class LibraryGUI:
             btn.pack(pady=5)
     
     def user_login(self):
-        """User login window"""
         try:
             customer_id = simpledialog.askstring("User Login", "Enter your customer id:")
             if not customer_id:
@@ -131,10 +125,9 @@ class LibraryGUI:
             messagebox.showerror("Error", f"Error in login: {e}")
     
     def add_book_window(self):
-        """Add book window"""
         window = tk.Toplevel(self.root)
         window.title("Add Book")
-        window.geometry("400x300")
+        window.geometry("400x400")
         window.configure(bg='#f0f0f0')
 
         tk.Label(window, text="Enter Book ID:", bg='#f0f0f0').pack(pady=5)
@@ -179,7 +172,6 @@ class LibraryGUI:
                  bg='#27ae60', fg='white', font=('Arial', 12)).pack(pady=20)
     
     def delete_book_window(self):
-        """Delete book window"""
         book_id = simpledialog.askstring("Delete Book", "Enter book id you wish to delete:")
         if book_id:
             try:
@@ -191,10 +183,9 @@ class LibraryGUI:
                 messagebox.showerror("Error", f"Error deleting book: {e}")
     
     def modify_qty_window(self):
-        """Modify quantity window"""
         window = tk.Toplevel(self.root)
         window.title("Modify Quantity")
-        window.geometry("400x250")
+        window.geometry("400x300")
         window.configure(bg='#f0f0f0')
         
         tk.Label(window, text="Enter book ID:", bg='#f0f0f0').pack(pady=10)
@@ -237,7 +228,6 @@ class LibraryGUI:
                  bg='#e67e22', fg='white', font=('Arial', 12)).pack(pady=20)
     
     def issue_book_window(self):
-        """Issue book window"""
         window = tk.Toplevel(self.root)
         window.title("Issue Book")
         window.geometry("400x250")
@@ -289,7 +279,6 @@ class LibraryGUI:
                  bg='#8e44ad', fg='white', font=('Arial', 12)).pack(pady=20)
     
     def return_book_window(self):
-        """Return book window"""
         window = tk.Toplevel(self.root)
         window.title("Return Book")
         window.geometry("400x250")
@@ -313,7 +302,7 @@ class LibraryGUI:
                 bid = book_id_entry.get()
                 dor = date_entry.get()
                 
-                st8 = "UPDATE RENTALS SET dor=%s WHERE BOOKID=%s AND C_ID=%s AND dor IS NULL"
+                st8 = "UPDATE RENTALS SET dor=%s WHERE BOOKID=%s"
                 self.cursor.execute(st8, (dor, bid))
                 self.connect.commit()
                 
@@ -339,8 +328,6 @@ class LibraryGUI:
                 st11 = "UPDATE RENTALS SET PRICE=%s WHERE BOOKID=%s AND C_ID=%s"
                 self.cursor.execute(st11, (price, bid, cid))
                 self.connect.commit()
-                
-                # Show bill
                 self.cursor.execute("SELECT C_ID, C_NAME, C_PNO, BOOKID, DOI, DOR, PRICE FROM RENTALS NATURAL JOIN C_DETAILS WHERE BOOKID=%s AND C_ID=%s", (bid, cid))
                 bill = self.cursor.fetchone()
                 
@@ -369,7 +356,6 @@ Fine: {fine}
                  bg='#c0392b', fg='white', font=('Arial', 12)).pack(pady=20)
     
     def show_rented_books(self):
-        """Show currently rented books"""
         try:
             st10 = "SELECT BOOKS.BOOKID, BOOKS.BOOKNAME, BOOKS.AUTHOR, BOOKS.GENRE, RENTALS.C_ID, C_DETAILS.C_NAME, RENTALS.DOI FROM BOOKS INNER JOIN RENTALS ON BOOKS.BOOKID=RENTALS.BOOKID INNER JOIN C_DETAILS ON RENTALS.C_ID=C_DETAILS.C_ID WHERE RENTALS.DOR IS NULL"
             self.cursor.execute(st10)
@@ -381,7 +367,6 @@ Fine: {fine}
             messagebox.showerror("Error", f"Error showing rented books: {e}")
     
     def show_returned_books(self):
-        """Show returned books"""
         try:
             st11 = "SELECT BOOKS.BOOKID, BOOKS.BOOKNAME, BOOKS.AUTHOR, BOOKS.GENRE, RENTALS.C_ID, C_DETAILS.C_NAME, RENTALS.DOI, RENTALS.DOR, RENTALS.PRICE FROM BOOKS INNER JOIN RENTALS ON BOOKS.BOOKID=RENTALS.BOOKID INNER JOIN C_DETAILS ON RENTALS.C_ID=C_DETAILS.C_ID WHERE RENTALS.DOR IS NOT NULL"
             self.cursor.execute(st11)
@@ -393,7 +378,6 @@ Fine: {fine}
             messagebox.showerror("Error", f"Error showing returned books: {e}")
     
     def search_book_window(self):
-        """Search books window for users"""
         window = tk.Toplevel(self.root)
         window.title("Search Books")
         window.geometry("500x400")
@@ -447,7 +431,6 @@ Fine: {fine}
                  bg='#95a5a6', fg='white', font=('Arial', 12)).pack(pady=5)
     
     def signup_window(self):
-        """Signup window"""
         window = tk.Toplevel(self.root)
         window.title("Sign Up")
         window.geometry("400x350")
@@ -501,7 +484,6 @@ Phone No: {pno}
 Address: {ad}
 Customer ID: {cid}
 Password: {pssd}
-WELCOME TO THE LIBRARY!
                 """
                 messagebox.showinfo("Registration Successful", details)
                 window.destroy()
@@ -514,7 +496,6 @@ WELCOME TO THE LIBRARY!
                  bg='#e74c3c', fg='white', font=('Arial', 12)).pack(pady=20)
     
     def show_table_window(self, title, data, headers):
-        """Show data in a table window"""
         window = tk.Toplevel(self.root)
         window.title(title)
         window.geometry("900x500")
@@ -553,7 +534,6 @@ WELCOME TO THE LIBRARY!
         if self.connect:
             self.connect.close()
 
-# Run the application
 if __name__ == "__main__":
     app = LibraryGUI()
     app.run()
