@@ -1,7 +1,7 @@
 import mysql.connector as sql
 from tabulate import tabulate
 try:
-    connect = sql.connect(host="localhost", user="root", passwd='1', database="Library")
+    connect = sql.connect(host="localhost", user="root", passwd='Your Password Here', database="Library")
 except sql.Error as e:
     print("Database connection failed:", e)
     exit()

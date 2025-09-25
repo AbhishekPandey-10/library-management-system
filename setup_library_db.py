@@ -10,9 +10,15 @@ import mysql.connector
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="Enter your password",
-    database="library"
+    password="Your Password Here",
+    database="my_new_library"
 )
+#drop existing tables if they exist
+cursor = conn.cursor()
+cursor.execute("DROP TABLE IF EXISTS rentals")
+cursor.execute("DROP TABLE IF EXISTS C_DETAILS")
+cursor.execute("DROP TABLE IF EXISTS admin")
+cursor.execute("DROP TABLE IF EXISTS books")
 
 cursor = conn.cursor()
 
@@ -96,12 +102,25 @@ CREATE TABLE C_DETAILS (
   C_AD VARCHAR(255)
 )
 """
+#creating A  admin table and inserting a sample admin
+
+create_admin_table_query = """
+CREATE TABLE admin (
+  admin_id INT PRIMARY KEY,
+  admin_name VARCHAR(255),
+  admin_password VARCHAR(255)
+)
+"""
+
+cursor.execute(create_admin_table_query)
+cursor.execute("insert into admin values (1,'admin','2049')")
+print("Table 'admin' created successfully!")
 cursor.execute(create_c_details_table_query)
 cursor.execute("insert into C_DETAILS values (1000,'ABHISHEK','9118209378','1234','LKO')")
 
 conn.commit()
 
-print("Table  created successfully!")
+print("All Tables created successfully!")
 
 cursor.close()
 conn.close()

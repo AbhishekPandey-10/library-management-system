@@ -65,8 +65,14 @@ class LibraryGUI:
         btn_exit.pack(pady=10)
     
     def admin_login(self):
+        username = simpledialog.askstring("Admin Login", "Enter your admin id:")
+        if not username or username != 'admin':
+            messagebox.showerror("Error", "Invalid admin ID")
+            return
+        self.cursor.execute("SELECT admin_password FROM admin WHERE admin_id=1")
+        result = self.cursor.fetchone()
         password = simpledialog.askstring("Admin Login", "Enter the password:", show='*')
-        if password and password == "2049":
+        if password and password == str(result[0]):
             self.admin_menu()
         elif password:
             messagebox.showerror("Error", "Wrong password")
