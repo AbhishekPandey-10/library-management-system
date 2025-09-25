@@ -94,3 +94,8 @@ python LMS GUI.py
 * The **CLI project** was my first proper Python + MySQL system — learned a lot while building it.
 * The **GUI project** is the improved, user-friendly version.
 * Both are in this repo.
+  
+---
+### Small Update - Sep 25
+1. Removed hardcoded Admin Password
+2. Now Admin Gets It's own Username and Password to login , with Validation
